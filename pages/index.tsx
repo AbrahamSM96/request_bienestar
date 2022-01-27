@@ -1,16 +1,22 @@
 import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
 import Table from "../components/Table";
+import { useTuples } from "../context/tuplesContext";
 import styles from "../styles/Home.module.css";
+import Layout from "../components/Layout";
 
 const Home: NextPage = () => {
+  const { tuples } = useTuples();
   return (
     <>
-      {/* <div className="flex items-center justify-center  bg-gray-900">
-        <h1 className="text-3xl text-gray-500">Hello world!</h1>
-      </div> */}
-      <Table />
+      <Layout>
+        {tuples.length === 0 ? (
+          <h2>There are no request</h2>
+        ) : (
+          <>
+            <Table />
+          </>
+        )}
+      </Layout>
     </>
   );
 };
