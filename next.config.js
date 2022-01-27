@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
+module.exports = {
   reactStrictMode: true,
-}
-
-module.exports = nextConfig
+  i18n: {
+    locales: ["en", "es"],
+    defaultLocale: "es",
+  },
+  env: {
+    SUPABASE_KEY: process.env.SUPABASE_KEY,
+  },
+};
