@@ -1,6 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { getUnities } from "../services/index";
 
-export default function DropDown() {
+export default function DropDown({ tup, setTup }) {
+  const [unity, setUnity] = useState([]);
+  const [error, setError] = useState(null);
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setTup({ ...tup, [name]: value });
+  };
+  useEffect(() => {
+    getUnities().then(([error, data]) => {
+      if (error) return setError(error);
+      setUnity(data);
+    });
+  }, []);
+
   return (
     <div className="p-4 relative inline-flex">
       <svg
@@ -14,16 +28,16 @@ export default function DropDown() {
           fillRule="nonzero"
         />
       </svg>
-      <select className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-gray-800 hover:border-gray-400 focus:outline-none appearance-none">
-        <option>Choose a color</option>
-        <option>Red</option>
-        <option>Blue</option>
-        <option>Yellow</option>
-        <option>Black</option>
-        <option>Orange</option>
-        <option>Purple</option>
-        <option>Gray</option>
-        <option>White</option>
+      <select
+        name="quantities"
+        className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-gray-800 hover:border-gray-400 focus:outline-none appearance-none"
+        onChange={handleChange}
+        value={tup.quantities}
+      >
+        <option>Choose an option</option>
+        {unity.map((unit) => {
+          return <option key={`unit-${unit.id}`}>{unit.name}</option>;
+        })}
       </select>
     </div>
   );

@@ -1,100 +1,57 @@
-import React from "react";
 import DropDown from "./DropDown";
-
-export default function Tr() {
+import { VscTrash } from "react-icons/vsc";
+import { AiOutlineEdit } from "react-icons/ai";
+import { useRouter } from "next/router";
+import { useTuples } from "../context/tuplesContext";
+export default function Tr(props) {
+  const { quantities, items, notes, classification, unities, index, id } =
+    props;
+  const { push } = useRouter();
+  const { deleteTuple } = useTuples();
+  const handleClick = (id) => {
+    push(`/edit/${id}`);
+  };
   return (
     <>
-      <tr className="bg-gray-800">
+      <tr
+        className="bg-gray-800 hover:bg-gray-700 cursor-pointer"
+        onClick={() => handleClick(id)}
+      >
+        <td className="p-3">
+          <span>{index}</span>
+        </td>
         <td className="p-3">
           <div className="flex align-items-center">
             <div className="ml-3">
               {/* <div className="text-gray-500">mail@rgmail.com</div> */}
-              <input
-                type="number"
-                placeholder="Cantidad"
-                className="px-3 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              />
+              <h2>{unities}</h2>
             </div>
           </div>
         </td>
         <td className="p-3">
-          <DropDown />
+          <p>{quantities}</p>
         </td>
 
         <td className="p-3 font-bold">
-          <DropDown />
+          <p>{classification}</p>
         </td>
         <td className="p-3">
-          <DropDown />
+          <p>{items}</p>
         </td>
         <td className="p-3 ">
-          <input
-            type="text"
-            placeholder="Comments"
-            className="px-3 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-          />
+          <p>{notes}</p>
         </td>
-      </tr>
-      <tr className="bg-gray-800">
-        <td className="p-3">
-          <div className="flex align-items-center">
-            <div className="ml-3">
-              <input
-                type="number"
-                placeholder="Cantidad"
-                className="px-3 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              />
-              {/* <div className="text-gray-500">mail@rgmail.com</div> */}
-            </div>
-          </div>
-        </td>
-        <td className="p-3">
-          <DropDown />
-        </td>
-
-        <td className="p-3 font-bold">
-          <DropDown />
-        </td>
-        <td className="p-3">
-          <DropDown />
-        </td>
-        <td className="p-3">
-          <input
-            type="text"
-            placeholder="Comments"
-            className="px-3 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-          />
-        </td>
-      </tr>
-      <tr className="bg-gray-800">
-        <td className="p-3">
-          <div className="flex align-items-center">
-            <div className="ml-3">
-              <input
-                type="number"
-                placeholder="Cantidad"
-                className="px-3 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-              />
-              {/* <div className="text-gray-500">mail@rgmail.com</div> */}
-            </div>
-          </div>
-        </td>
-        <td className="p-3">
-          <DropDown />
-        </td>
-
-        <td className="p-3 font-bold">
-          <DropDown />
-        </td>
-        <td className="p-3">
-          <DropDown />
-        </td>
-        <td className="p-3">
-          <input
-            type="text"
-            placeholder="Comments"
-            className="px-3 py-1 placeholder-blueGray-300 text-blueGray-600 relative bg-white bg-white rounded text-sm border-0 shadow outline-none focus:outline-none focus:ring w-full"
-          />
+        <td className="p-3 ">
+          <button
+            className="bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center"
+            onClick={(event) => {
+              event.stopPropagation();
+              deleteTuple(id);
+            }}
+          >
+            Delete
+            <VscTrash className="mr-2 " />
+          </button>
         </td>
       </tr>
     </>
