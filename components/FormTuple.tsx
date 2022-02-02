@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 export default function FormTuple() {
   const [tup, setTup] = useState({
-    unities: "",
+    unities: 0,
     quantities: "",
     classification: "",
     items: "",
@@ -39,9 +39,7 @@ export default function FormTuple() {
 
   useEffect(() => {
     if (query.id) {
-      const tupleFound = tuples.find(
-        (tuple) => Number(tuple.id) === Number(query.id),
-      );
+      const tupleFound = tuples.find((tuple) => tuple.id_tuple === query.id);
 
       setTup({
         unities: tupleFound.unities,

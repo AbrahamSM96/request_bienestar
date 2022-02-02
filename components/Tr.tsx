@@ -3,19 +3,20 @@ import { VscTrash } from "react-icons/vsc";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useTuples } from "../context/tuplesContext";
-export default function Tr(props) {
-  const { quantities, items, notes, classification, unities, index, id } =
+export default function Tr(props: any) {
+  const { quantities, items, notes, classification, unities, index, id_tuple } =
     props;
   const { push } = useRouter();
   const { deleteTuple } = useTuples();
-  const handleClick = (id) => {
-    push(`/edit/${id}`);
+
+  const handleClick = (id_tuple: String) => {
+    push(`/edit/${id_tuple}`);
   };
   return (
     <>
       <tr
         className="bg-gray-800 hover:bg-gray-700 cursor-pointer"
-        onClick={() => handleClick(id)}
+        onClick={() => handleClick(id_tuple)}
       >
         <td className="p-3">
           <span>{index}</span>
@@ -46,7 +47,7 @@ export default function Tr(props) {
             className="bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center"
             onClick={(event) => {
               event.stopPropagation();
-              deleteTuple(id);
+              deleteTuple(id_tuple);
             }}
           >
             Delete
