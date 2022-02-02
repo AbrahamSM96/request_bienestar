@@ -1,5 +1,10 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import { getMain, createTupleInMain } from "../services/index";
+import {
+  getMain,
+  createTupleInMain,
+  updateTupleInMain,
+  deleteTupleMain,
+} from "../services/index";
 import { v4 as uuid } from "uuid";
 
 export const TuplesContext = createContext();
@@ -35,15 +40,14 @@ export const TuplesProvider = ({ children }) => {
     await createTupleInMain(newTuple);
   };
 
-  const updateTuple = (id, updatedTask) => {
-    const upTup = tuples.map((tup) =>
-      Number(tup.id) === Number(id) ? { ...tup, ...updatedTask } : tup,
-    );
-    setTuples([...upTup]);
+  const updateTuple = async (id, updatedTask) => {
+    const [error, data] = await updateTupleInMain(id, updatedTask, tuples);
+    setTuples(data);
   };
 
-  const deleteTuple = (id) => {
-    setTuples([...tuples.filter((tup) => tup.id !== id)]);
+  const deleteTuple = async (id) => {
+    const [error, data] = await deleteTupleMain(id, tuples);
+    setTuples(data);
   };
 
   return (
