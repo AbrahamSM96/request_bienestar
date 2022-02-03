@@ -30,7 +30,7 @@ export default function DropDown({ tup, setTup }) {
       </svg>
       <select
         name="quantities"
-        className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-gray-800 hover:border-gray-400 focus:outline-none appearance-none"
+        className="border border-gray-300 rounded-full text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
         onChange={handleChange}
         value={tup.quantities}
       >
