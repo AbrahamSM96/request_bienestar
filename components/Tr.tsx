@@ -15,13 +15,13 @@ export default function Tr(props: any) {
   return (
     <>
       <tr
-        className="bg-gray-800 hover:bg-gray-700 cursor-pointer"
+        className="bg-morenaLigth hover:bg-pantone626green cursor-pointer "
         onClick={() => handleClick(id_tuple)}
       >
-        <td className="p-3">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
           <span>{index}</span>
         </td>
-        <td className="p-3">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
           <div className="flex align-items-center">
             <div className="ml-3">
               {/* <div className="text-gray-500">mail@rgmail.com</div> */}
@@ -29,29 +29,29 @@ export default function Tr(props: any) {
             </div>
           </div>
         </td>
-        <td className="p-3">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
           <p>{quantities}</p>
         </td>
 
-        <td className="p-3 font-bold">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
           <p>{classification}</p>
         </td>
-        <td className="p-3">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
           <p>{items}</p>
         </td>
-        <td className="p-3 ">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
           <p>{notes}</p>
         </td>
-        <td className="p-3 ">
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
           <button
-            className="bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center"
+            className=" hover:bg-red-600 px-3 py-1 inline-flex items-center text-white"
             onClick={(event) => {
               event.stopPropagation();
               deleteTuple(id_tuple);
             }}
           >
-            Delete
-            <VscTrash className="mr-2 " />
+            Eliminar
+            <VscTrash className="ml-2" />
           </button>
         </td>
       </tr>
