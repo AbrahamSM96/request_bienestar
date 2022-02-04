@@ -54,8 +54,8 @@ export default function FormTuple() {
 
   return (
     <Layout>
-      <div className="flex justify-center items-center h-full">
-        <form onSubmit={handleSubmit} className="bg-morenaLigth p-10 h-2/4">
+      <div className="flex justify-center items-center h-screen">
+        <form onSubmit={handleSubmit} className="bg-morenaLigth p-10 h-auto">
           <div className="flex justify-between">
             <div>
               <h1 className="text-3xl mb-7 font-bold rounded-sm">
@@ -78,26 +78,10 @@ export default function FormTuple() {
             name="unities"
             className="bg-pantone468cream text-slate-800 focus:outline-none w-full p-3 px-4 mb-5"
             placeholder="How many things"
+            value={tup.unities > 0 ? tup.unities : ""}
             onChange={(e) => handleChange(e)}
-            value={tup.unities}
           />
           <DropDown tup={tup} setTup={setTup} />
-          <textarea
-            name="classification"
-            rows={3}
-            placeholder="Tipo de clasificación"
-            className="bg-pantone468cream text-slate-800 focus:outline-none w-full p-3 px-4 mb-5 placeholder-gray-500"
-            onChange={(e) => handleChange(e)}
-            value={tup.classification}
-          ></textarea>
-          <textarea
-            name="items"
-            rows={3}
-            placeholder="Descripción del articulo"
-            className="bg-pantone468cream text-slate-800 focus:outline-none w-full p-3 px-4 mb-5 placeholder-gray-500"
-            onChange={(e) => handleChange(e)}
-            value={tup.items}
-          ></textarea>
           <textarea
             name="notes"
             rows={3}
@@ -107,7 +91,7 @@ export default function FormTuple() {
             value={tup.notes}
           ></textarea>
           <button
-            className="bg-green-500 hover:bg-green-400 px-4 py-2 rounded-sm disabled:opacity-50"
+            className="bg-pantone627green hover:bg-pantone626green px-4 py-2 rounded-sm disabled:opacity-50"
             disabled={!tup.unities}
           >
             Guardar
