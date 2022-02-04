@@ -10,6 +10,55 @@ export const getUnities = async () => {
   return [error, data];
 };
 
+export const getCatFoods = async () => {
+  const { data, error } = await supabase.from("foods").select("name, id");
+  return [error, data];
+};
+
+export const getCategories = async () => {
+  const { data, error } = await supabase.from("categories").select("name, id");
+  return [error, data];
+};
+
+export const getCatStationery1 = async () => {
+  const { data, error } = await supabase
+    .from("stationery_1")
+    .select("name, id");
+  return [error, data];
+};
+
+export const getCatStationery2 = async () => {
+  const { data, error } = await supabase
+    .from("stationery_2")
+    .select("name, id");
+  return [error, data];
+};
+
+export const getCatAutoparts = async () => {
+  const { data, error } = await supabase.from("autoparts").select("name, id");
+  return [error, data];
+};
+
+export const getCatCleaning = async () => {
+  const { data, error } = await supabase.from("cleaning").select("name, id");
+  return [error, data];
+};
+
+export const getCatElectric = async () => {
+  const { data, error } = await supabase.from("electric").select("name, id");
+  return [error, data];
+};
+
+export const getCatMaintenance = async () => {
+  const { data, error } = await supabase.from("maintenance").select("name, id");
+  return [error, data];
+};
+
+export const getCatPharmacy = async () => {
+  const { data, error } = await supabase.from("pharmacy").select("name, id");
+  return [error, data];
+};
+
 export const createTupleInMain = async (newTuple) => {
   const { data, error } = await supabase
     .from("main")
