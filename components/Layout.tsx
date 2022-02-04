@@ -9,21 +9,21 @@ export default function Layout({ children }) {
 
   return (
     <div className="bg-morenaBold text-white">
-      <header className=" flex flex-col items-center sm:flex-row bg-morenaBold text-white px-28 py-5  border-solid border-gray-500 border-b-2 ">
+      <header className="flex flex-col items-center sm:flex-row bg-morenaBold text-white px-28 py-5  border-solid border-gray-500 border-b-2 ">
         <Link href={`/`} passHref>
-          <picture className="cursor-pointer border-b-8 sm:border-b-0 border-solid border-transparent">
+          <picture className="cursor-pointer pb-4 sm:pb-0 ">
             <Bienestar heigth={"29px"} width={"170px"} alt="bienestar" />
           </picture>
         </Link>
-        <span className="ml-2 text-gray-400 font-bold text-xs border-b-8 sm:border-b-0 border-solid border-transparent">
+        <span className="sm:ml-2 ml-0 text-gray-400 font-bold text-xs pb-4 sm:p-0 ">
           No. de requisiciónes {tuples.length}
         </span>
-        <div className="flex-grow text-right text-md border-b-8 sm:border-b-0 border-solid border-transparent">
+        <div className="flex-grow text-right text-md pb-1 sm:pb-0">
           <button
-            className="bg-pantone465cream text-sm px-3 py-2 hover:bg-pantone468cream font-bold rounded-sm inline-flex items-center"
+            className="bg-pantone465cream text-sm px-1 py-1 sm:px-3 sm:py-2 hover:bg-pantone468cream font-bold rounded-sm inline-flex items-center"
             onClick={() => router.push("/addtuple")}
           >
-            <AiOutlinePlus className="mr-2 " />
+            <AiOutlinePlus className="mr-1 sm:mr-2" />
             Agregar
           </button>
         </div>
