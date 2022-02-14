@@ -77,7 +77,7 @@ export default function FormTuple() {
             type="number"
             name="unities"
             className="bg-pantone468cream text-slate-800 focus:outline-none w-full p-3 px-4 mb-5"
-            placeholder="How many things"
+            placeholder="¿Cuantás unidades?"
             value={tup.unities > 0 ? tup.unities : ""}
             onChange={(e) => handleChange(e)}
           />
