@@ -3,7 +3,12 @@ import { useRouter } from "next/router";
 import { AiOutlinePlus } from "react-icons/ai";
 import { useTuples } from "../context/tuplesContext";
 import Bienestar from "../public/images/Bienestar.js";
-export default function Layout({ children }) {
+
+interface Prop {
+  children?: React.ReactChild | React.ReactChild[];
+}
+
+export default function Layout({ children }: Prop) {
   const router = useRouter();
   const { tuples } = useTuples();
 

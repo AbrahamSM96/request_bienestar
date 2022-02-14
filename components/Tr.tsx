@@ -3,7 +3,18 @@ import { VscTrash } from "react-icons/vsc";
 import { AiOutlineEdit } from "react-icons/ai";
 import { useRouter } from "next/router";
 import { useTuples } from "../context/tuplesContext";
-export default function Tr(props: any) {
+
+interface Prop {
+  quantities: number;
+  items: string;
+  notes: string;
+  classification: string;
+  unities: string;
+  index: string;
+  id_tuple: string;
+}
+
+export default function Tr(props: Prop) {
   const { quantities, items, notes, classification, unities, index, id_tuple } =
     props;
   const { push } = useRouter();
