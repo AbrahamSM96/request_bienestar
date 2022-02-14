@@ -59,7 +59,7 @@ export const getCatPharmacy = async () => {
   return [error, data];
 };
 
-export const createTupleInMain = async (newTuple) => {
+export const createTupleInMain = async (newTuple: object) => {
   const { data, error } = await supabase
     .from("main")
     .insert([{ ...newTuple }])
@@ -67,7 +67,19 @@ export const createTupleInMain = async (newTuple) => {
   return [error, data];
 };
 
-export const updateTupleInMain = async (id, updatedTask, tuples) => {
+export const updateTupleInMain = async (
+  id: string,
+  updatedTask: object,
+  tuples: [
+    quantities: string,
+    items: string,
+    notes: string,
+    classification: string,
+    unities: number,
+    index: number,
+    id_tuple: any,
+  ],
+) => {
   const findUpdatedTup = tuples.filter((tup) => tup.id_tuple === id);
 
   const { data, error } = await supabase
@@ -84,7 +96,18 @@ export const updateTupleInMain = async (id, updatedTask, tuples) => {
   return [error, newDataUpdated];
 };
 
-export const deleteTupleMain = async (id, tuples) => {
+export const deleteTupleMain = async (
+  id: string,
+  tuples: [
+    quantities: string,
+    items: string,
+    notes: string,
+    classification: string,
+    unities: number,
+    index: number,
+    id_tuple: any,
+  ],
+) => {
   const { error, data } = await supabase
     .from("main")
     .delete()
