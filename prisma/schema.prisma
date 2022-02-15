@@ -1,0 +1,75 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Areas {
+  id                 String  @id @default(cuid())
+  name String 
+}
+
+model Unidades {
+  id                 String  @id @default(cuid())
+  name String 
+}
+
+model Categorias {
+  id                 String  @id @default(cuid())
+  name String 
+}
+
+model Alimentos {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model Papelerias_1 {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model Papelerias_2 {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model M_vehiculos {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model Limpiezas {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model M_electricos {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model Mantenimientos {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model Farmacias {
+  id                 String  @id @default(cuid())
+  name String
+}
+
+model Requerimientos {
+  id                 String  @id @default(cuid())
+  cantindad String
+  unidad Int
+  clasificacion String
+  item String
+  created_at  DateTime @default(now())
+}
