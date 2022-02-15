@@ -1,0 +1,12 @@
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default async (req, res) => {
+  try {
+    const data = await prisma.papelerias_1.findMany();
+    return res.status(200).send(data);
+  } catch (error) {
+    return res.status(500).send({ error });
+  }
+};
