@@ -89,10 +89,11 @@ CREATE TABLE "Farmacias" (
 -- CreateTable
 CREATE TABLE "Requerimientos" (
     "id" TEXT NOT NULL,
-    "cantindad" TEXT NOT NULL,
-    "unidad" INTEGER NOT NULL,
+    "cantidad" INTEGER NOT NULL,
+    "unidad" TEXT NOT NULL,
     "clasificacion" TEXT NOT NULL,
     "item" TEXT NOT NULL,
+    "nota" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Requerimientos_pkey" PRIMARY KEY ("id")
