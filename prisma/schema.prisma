@@ -67,9 +67,10 @@ model Farmacias {
 
 model Requerimientos {
   id                 String  @id @default(cuid())
-  cantindad String
-  unidad Int
+  cantidad Int
+  unidad String
   clasificacion String
   item String
+  nota String?
   created_at  DateTime @default(now())
 }
