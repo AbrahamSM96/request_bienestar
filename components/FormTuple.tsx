@@ -25,13 +25,26 @@ export default function FormTuple() {
   const handleSubmit = (e: Event) => {
     e.preventDefault();
     if (!query.id) {
-      createTuple(
-        tup.unities,
-        tup.quantities,
-        tup.classification,
-        tup.items,
-        tup.notes,
-      );
+      // createTuple(
+      //   tup.unities,
+      //   tup.quantities,
+      //   tup.classification,
+      //   tup.items,
+      //   tup.notes,
+      // );
+      fetch("/api/postRequerimientos", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(tup),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          createTuple(data);
+        })
+        .catch((error) => console.log(error, "error fetch"));
     } else {
       updateTuple(query.id, { ...tup });
     }

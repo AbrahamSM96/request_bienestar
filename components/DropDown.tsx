@@ -5,7 +5,7 @@ import { useDropdownRenders } from "../hooks/useDropdownRenders";
 
 interface Props {
   tup: [
-    unities: string,
+    unities: number,
     quantities: string,
     classification: string,
     items: string,
@@ -27,19 +27,25 @@ export default function DropDown(props: Props) {
   };
 
   useEffect(() => {
-    getUnities().then(([error, data]) => {
-      if (error) return setError(error);
-      setUnity(data);
-    });
+    fetch("api/unidades")
+      .then((response) => response.json())
+      .then((data) => setUnity(data));
 
-    getCategories().then(([error, data]) => {
-      if (error) return setError(error);
-      setCategory(data);
-    });
+    // getUnities().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setUnity(data);
+    // });
+    fetch("api/categorias")
+      .then((response) => response.json())
+      .then((data) => setCategory(data));
+    // getCategories().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setCategory(data);
+    // });
   }, []);
 
   const categories = category.map((cate) => (
-    <option key={`categorie-${cate.id}`}>{cate.name}</option>
+    <option key={`categories-${cate.id}`}>{cate.name}</option>
   ));
 
   const unities = unity.map((unit) => (

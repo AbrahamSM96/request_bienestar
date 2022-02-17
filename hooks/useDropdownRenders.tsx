@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
 import {
-  getCategories,
   getCatFoods,
-  getUnities,
   getCatStationery1,
   getCatAutoparts,
   getCatCleaning,
@@ -24,46 +22,76 @@ export const useDropdownRenders = () => {
   const [error, setError] = useState<null>(null);
 
   useEffect(() => {
+    fetch("api/alimentos")
+      .then((response) => response.json())
+      .then((data) => setFood(data));
 
-    getCatFoods().then(([error, data]) => {
-      if (error) return setError(error);
-      setFood(data);
-    });
+    // getCatFoods().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setFood(data);
+    // });
 
-    getCatStationery1().then(([error, data]) => {
-      if (error) return setError(error);
-      setStationery1(data);
-    });
+    fetch("api/papelerias_1")
+      .then((response) => response.json())
+      .then((data) => setStationery1(data));
 
-    getCatStationery2().then(([error, data]) => {
-      if (error) return setError(error);
-      setStationery2(data);
-    });
+    // getCatStationery1().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setStationery1(data);
+    // });
 
-    getCatAutoparts().then(([error, data]) => {
-      if (error) return setError(error);
-      setAutopart(data);
-    });
+    fetch("api/papelerias_2")
+      .then((response) => response.json())
+      .then((data) => setStationery2(data));
 
-    getCatCleaning().then(([error, data]) => {
-      if (error) return setError(error);
-      setClean(data);
-    });
+    // getCatStationery2().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setStationery2(data);
+    // });
 
-    getCatElectric().then(([error, data]) => {
-      if (error) return setError(error);
-      setElectricc(data);
-    });
+    fetch("api/m_vehiculos")
+      .then((response) => response.json())
+      .then((data) => setAutopart(data));
 
-    getCatPharmacy().then(([error, data]) => {
-      if (error) return setError(error);
-      setPharmacyy(data);
-    });
+    // getCatAutoparts().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setAutopart(data);
+    // });
 
-    getCatMaintenance().then(([error, data]) => {
-      if (error) return setError(error);
-      setMaintenancee(data);
-    });
+    fetch("api/limpiezas")
+      .then((response) => response.json())
+      .then((data) => setClean(data));
+
+    // getCatCleaning().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setClean(data);
+    // });
+
+    fetch("api/m_electricos")
+      .then((response) => response.json())
+      .then((data) => setElectricc(data));
+    // getCatElectric().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setElectricc(data);
+    // });
+
+    fetch("api/farmacias")
+      .then((response) => response.json())
+      .then((data) => setPharmacyy(data));
+
+    // getCatPharmacy().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setPharmacyy(data);
+    // });
+
+    fetch("api/mantenimientos")
+      .then((response) => response.json())
+      .then((data) => setMaintenancee(data));
+
+    // getCatMaintenance().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setMaintenancee(data);
+    // });
   }, []);
 
   const foods = food.map((foo) => (
@@ -102,9 +130,9 @@ export const useDropdownRenders = () => {
     ALIMENTOS: foods,
     PAPELERIA_1: stationery_1,
     PAPELERIA_2: stationery_2,
-    VEHICULOS: autoparts,
+    M_VEHICULOS: autoparts,
     LIMPIEZA: cleaning,
-    ELECTRICO: electric,
+    M_ELECTRICO: electric,
     MANTENIMIENTO: maintenance,
     FARMACIA: pharmacy,
   };

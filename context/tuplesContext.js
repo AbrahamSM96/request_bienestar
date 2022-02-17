@@ -15,29 +15,21 @@ export const TuplesProvider = ({ children }) => {
   const [tuples, setTuples] = useState([]);
   const [error, setError] = useState(null);
   useEffect(() => {
-    getMain().then(([error, data]) => {
-      if (error) return setError(error);
-      setTuples(data);
-    });
+    // getMain().then(([error, data]) => {
+    //   if (error) return setError(error);
+    //   setTuples(data);
+    // });
+
+    fetch("/api/getRequerimientos")
+      .then((response) => response.json())
+      .then((data) => {
+        setTuples(data);
+      })
+      .catch((error) => setError(error));
   }, []);
-  const createTuple = async (
-    unities,
-    quantities,
-    classification,
-    items,
-    notes,
-  ) => {
-    const id_tuple = uuid();
-    const newTuple = {
-      unities,
-      quantities,
-      classification,
-      items,
-      notes,
-      id_tuple,
-    };
-    setTuples([...tuples, { ...newTuple }]);
-    await createTupleInMain(newTuple);
+  const createTuple = async (data) => {
+    setTuples([...tuples, { ...data }]);
+    // await createTupleInMain(newTuple);
   };
 
   const updateTuple = async (id, updatedTask) => {
