@@ -14,6 +14,49 @@ export const useTuples = () => useContext(TuplesContext);
 export const TuplesProvider = ({ children }) => {
   const [tuples, setTuples] = useState([]);
   const [error, setError] = useState(null);
+
+  const createTuple = async (data) => {
+    setTuples([...tuples, { ...data }]);
+    // await createTupleInMain(newTuple);
+  };
+
+  const updateTuple = async (updatedTask) => {
+    // const [error, data] = await updateTupleInMain(id, updatedTask, tuples);
+    await fetch("/api/updateRequerimientos", {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedTask),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTuples([
+          ...tuples.map((tup) =>
+            tup.id === data.id ? { ...tup, ...data } : tup,
+          ),
+        ]);
+      })
+      .catch((error) => setError(error));
+  };
+
+  const deleteTuple = async (id) => {
+    await fetch("/api/deleteRequerimientos", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(id),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setTuples([...tuples.filter((tup) => tup.id !== data.id)]);
+      })
+      .catch((error) => setError(error));
+    // const [error, data] = await deleteTupleMain(id, tuples);
+    // setTuples(data);
+  };
+
   useEffect(() => {
     // getMain().then(([error, data]) => {
     //   if (error) return setError(error);
@@ -27,20 +70,6 @@ export const TuplesProvider = ({ children }) => {
       })
       .catch((error) => setError(error));
   }, []);
-  const createTuple = async (data) => {
-    setTuples([...tuples, { ...data }]);
-    // await createTupleInMain(newTuple);
-  };
-
-  const updateTuple = async (id, updatedTask) => {
-    const [error, data] = await updateTupleInMain(id, updatedTask, tuples);
-    setTuples(data);
-  };
-
-  const deleteTuple = async (id) => {
-    const [error, data] = await deleteTupleMain(id, tuples);
-    setTuples(data);
-  };
 
   return (
     <TuplesContext.Provider
