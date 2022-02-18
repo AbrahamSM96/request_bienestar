@@ -1,5 +1,4 @@
 import prisma from "lib/prisma";
-const crypto = require("crypto");
 
 export default async (req, res) => {
   // post
@@ -9,15 +8,14 @@ export default async (req, res) => {
     clasificacion,
     item,
     nota,
+    idQuery: id,
   } = req.body;
-
-  const id = crypto.randomUUID();
   const cantidad = parseInt(cantidadString);
 
   try {
-    const data = await prisma.requerimientos.create({
+    const data = await prisma.requerimientos.update({
+      where: { id },
       data: {
-        id,
         cantidad,
         unidad,
         clasificacion,
@@ -26,7 +24,7 @@ export default async (req, res) => {
       },
     });
 
-    return res.status(201).send(data);
+    return res.status(200).send(data);
   } catch (error) {
     return res.status(500).send({ error });
   }
