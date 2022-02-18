@@ -33,7 +33,7 @@ export default function Layout({ children }: Prop) {
           </button>
         </div>
       </header>
-      <main className="md:px-12 xl:px-28 ">{children}</main>
+      <main className="md:px-12 xl:px-28 h-screen">{children}</main>
     </div>
   );
 }
