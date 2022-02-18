@@ -5,11 +5,11 @@ import { useDropdownRenders } from "../hooks/useDropdownRenders";
 
 interface Props {
   tup: [
-    unities: number,
-    quantities: string,
-    classification: string,
-    items: string,
-    notes: string,
+    cantidad: number,
+    unidad: string,
+    clasificacion: string,
+    item: string,
+    nota: string,
   ];
   setTup: (pro: object) => object;
   handleChange: () => object;
@@ -27,7 +27,7 @@ export default function DropDown(props: Props) {
   };
 
   useEffect(() => {
-    fetch("api/unidades")
+    fetch("/api/unidades")
       .then((response) => response.json())
       .then((data) => setUnity(data));
 
@@ -35,7 +35,7 @@ export default function DropDown(props: Props) {
     //   if (error) return setError(error);
     //   setUnity(data);
     // });
-    fetch("api/categorias")
+    fetch("/api/categorias")
       .then((response) => response.json())
       .then((data) => setCategory(data));
     // getCategories().then(([error, data]) => {
@@ -53,16 +53,15 @@ export default function DropDown(props: Props) {
   ));
 
   const { renameTables } = useDropdownRenders();
-
   return (
     <div>
       <div className="p-4 relative inline-flex">
         <ArrowDropdown />
         <select
-          name="quantities"
+          name="unidad"
           className="border border-gray-300 rounded-full cursor-pointer text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
           onChange={handleChange}
-          value={tup.quantities}
+          value={tup.unidad}
         >
           <option>Elige una opción</option>
           {unities}
@@ -71,10 +70,10 @@ export default function DropDown(props: Props) {
       <div className="p-4 relative inline-flex">
         <ArrowDropdown />
         <select
-          name="classification"
+          name="clasificacion"
           className="border border-gray-300 rounded-full cursor-pointer text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
           onChange={handleChange}
-          value={tup.classification}
+          value={tup.clasificacion}
         >
           <option>Elige una opción</option>
           {categories}
@@ -83,13 +82,13 @@ export default function DropDown(props: Props) {
       <div className="p-4 relative inline-flex">
         <ArrowDropdown />
         <select
-          name="items"
+          name="item"
           className="border border-gray-300 rounded-full cursor-pointer text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
           onChange={handleChange}
-          value={tup.items}
+          value={tup.item}
         >
           <option>Elige una opción</option>
-          {renameTables[tup.classification]}
+          {renameTables[tup.clasificacion]}
         </select>
       </div>
     </div>
