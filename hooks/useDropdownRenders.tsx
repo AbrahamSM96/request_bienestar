@@ -22,7 +22,7 @@ export const useDropdownRenders = () => {
   const [error, setError] = useState<null>(null);
 
   useEffect(() => {
-    fetch("api/alimentos")
+    fetch("/api/alimentos")
       .then((response) => response.json())
       .then((data) => setFood(data));
 
@@ -31,7 +31,7 @@ export const useDropdownRenders = () => {
     //   setFood(data);
     // });
 
-    fetch("api/papelerias_1")
+    fetch("/api/papelerias_1")
       .then((response) => response.json())
       .then((data) => setStationery1(data));
 
@@ -40,7 +40,7 @@ export const useDropdownRenders = () => {
     //   setStationery1(data);
     // });
 
-    fetch("api/papelerias_2")
+    fetch("/api/papelerias_2")
       .then((response) => response.json())
       .then((data) => setStationery2(data));
 
@@ -49,7 +49,7 @@ export const useDropdownRenders = () => {
     //   setStationery2(data);
     // });
 
-    fetch("api/m_vehiculos")
+    fetch("/api/m_vehiculos")
       .then((response) => response.json())
       .then((data) => setAutopart(data));
 
@@ -58,7 +58,7 @@ export const useDropdownRenders = () => {
     //   setAutopart(data);
     // });
 
-    fetch("api/limpiezas")
+    fetch("/api/limpiezas")
       .then((response) => response.json())
       .then((data) => setClean(data));
 
@@ -67,7 +67,7 @@ export const useDropdownRenders = () => {
     //   setClean(data);
     // });
 
-    fetch("api/m_electricos")
+    fetch("/api/m_electricos")
       .then((response) => response.json())
       .then((data) => setElectricc(data));
     // getCatElectric().then(([error, data]) => {
@@ -75,7 +75,7 @@ export const useDropdownRenders = () => {
     //   setElectricc(data);
     // });
 
-    fetch("api/farmacias")
+    fetch("/api/farmacias")
       .then((response) => response.json())
       .then((data) => setPharmacyy(data));
 
@@ -84,7 +84,7 @@ export const useDropdownRenders = () => {
     //   setPharmacyy(data);
     // });
 
-    fetch("api/mantenimientos")
+    fetch("/api/mantenimientos")
       .then((response) => response.json())
       .then((data) => setMaintenancee(data));
 
