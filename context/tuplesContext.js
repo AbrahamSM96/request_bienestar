@@ -14,6 +14,7 @@ export const useTuples = () => useContext(TuplesContext);
 export const TuplesProvider = ({ children }) => {
   const [tuples, setTuples] = useState([]);
   const [error, setError] = useState(null);
+  const [load, setLoad] = useState(true);
 
   const createTuple = async (data) => {
     setTuples([...tuples, { ...data }]);
@@ -62,18 +63,23 @@ export const TuplesProvider = ({ children }) => {
     //   if (error) return setError(error);
     //   setTuples(data);
     // });
-
-    fetch("/api/getRequerimientos")
-      .then((response) => response.json())
-      .then((data) => {
-        setTuples(data);
-      })
-      .catch((error) => setError(error));
+    setLoad(true);
+    setTimeout(() => {
+      fetch("/api/getRequerimientos")
+        .then((response) => response.json())
+        .then((data) => {
+          setLoad(false);
+          setTuples(data);
+        })
+        .catch((error) => {
+          setError(error), setLoad(false);
+        });
+    }, 1000);
   }, []);
 
   return (
     <TuplesContext.Provider
-      value={{ tuples, createTuple, updateTuple, deleteTuple }}
+      value={{ tuples, createTuple, updateTuple, deleteTuple, load }}
     >
       {children}
     </TuplesContext.Provider>

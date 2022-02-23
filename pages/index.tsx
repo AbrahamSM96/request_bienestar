@@ -6,11 +6,11 @@ import Layout from "../components/Layout";
 import Spinner from "../components/Spinner/Spinner";
 
 const Home: NextPage = () => {
-  const { tuples } = useTuples();
+  const { tuples, load } = useTuples();
   return (
     <>
       <Layout>
-        {tuples.length === 0 ? (
+        {load ? (
           <Spinner />
         ) : (
           <>
