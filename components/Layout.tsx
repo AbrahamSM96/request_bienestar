@@ -13,7 +13,7 @@ export default function Layout({ children }: Prop) {
   const { tuples } = useTuples();
 
   return (
-    <div className="bg-morenaBold text-white">
+    <>
       <header className="flex flex-col items-center sm:flex-row bg-morenaBold text-white px-28 py-5  border-solid border-gray-500 border-b-2 ">
         <Link href={`/`} passHref>
           <picture className="cursor-pointer pb-4 sm:pb-0 ">
@@ -33,7 +33,7 @@ export default function Layout({ children }: Prop) {
           </button>
         </div>
       </header>
-      <main className="md:px-12 xl:px-28 h-screen">{children}</main>
-    </div>
+      <main className="bg-morenaBold text-white md:px-12 xl:px-28 h-full min-h-screen">{children}</main>
+    </>
   );
 }
