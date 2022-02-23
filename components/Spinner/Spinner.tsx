@@ -2,7 +2,7 @@ import styles from "./Spinner.module.css";
 
 export default function Spinner() {
   return (
-    <div className="h-screen bg-morenaBold">
+    <div className="h-screen bg-morenaBold flex justify-center items-center">
       <div className={styles.skCubeGrid}>
         <div className={`${styles.skCube} ${styles.skCube1}`}></div>
         <div className={`${styles.skCube} ${styles.skCube2}`}></div>
