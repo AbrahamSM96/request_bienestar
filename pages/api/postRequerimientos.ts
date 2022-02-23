@@ -9,6 +9,7 @@ export default async (req, res) => {
     clasificacion,
     item,
     nota,
+    area,
   } = req.body;
 
   const id = crypto.randomUUID();
@@ -23,6 +24,7 @@ export default async (req, res) => {
         clasificacion,
         item,
         nota,
+        area,
       },
     });
 

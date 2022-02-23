@@ -7,15 +7,24 @@ import { useTuples } from "../context/tuplesContext";
 interface Prop {
   unidad: number;
   item: string;
+  area: string;
   nota: string;
   clasificacion: string;
   cantidad: number;
   index: string;
   id: string;
+  created_at: string;
 }
 
 export default function Tr(props: Prop) {
-  const { unidad, item, nota, clasificacion, cantidad, index, id } = props;
+  const { unidad, item, nota, clasificacion, cantidad, id, created_at, area } =
+    props;
+  const parseDate = new Date(created_at).toLocaleDateString("es", {
+    day: "2-digit",
+    month: "2-digit",
+    year: "2-digit",
+  });
+
   const { push } = useRouter();
   const { deleteTuple } = useTuples();
 
@@ -29,7 +38,7 @@ export default function Tr(props: Prop) {
         onClick={() => handleClick(id)}
       >
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
-          <span>{index}</span>
+          <span>{parseDate}</span>
         </td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4">
           <div className="flex align-item-center">
@@ -53,15 +62,17 @@ export default function Tr(props: Prop) {
           <p>{nota}</p>
         </td>
         <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
+          <p>{area}</p>
+        </td>
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-nowrap p-4 ">
           <button
-            className=" hover:bg-red-600 px-3 py-1 inline-flex item-center text-white"
+            className="px-3 py-1 inline-flex item-center"
             onClick={(event) => {
               event.stopPropagation();
               deleteTuple(id);
             }}
           >
-            Eliminar
-            <VscTrash className="ml-2" />
+            <VscTrash size={"18px"} className="text-white hover:text-red-600" />
           </button>
         </td>
       </tr>

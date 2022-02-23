@@ -19,13 +19,13 @@ export default function DropDown(props: Props) {
   const { tup, setTup } = props;
   const [unity, setUnity] = useState([]);
   const [category, setCategory] = useState([]);
+  const [area, setArea] = useState([]);
   const [errorr, setError] = useState<Error | null>(null);
 
   const handleChange = (event: { target: HTMLInputElement }) => {
     const { name, value } = event.target;
     setTup({ ...tup, [name]: value });
   };
-
   useEffect(() => {
     fetch("/api/unidades")
       .then((response) => response.json())
@@ -42,6 +42,9 @@ export default function DropDown(props: Props) {
     //   if (error) return setError(error);
     //   setCategory(data);
     // });
+    fetch("/api/areas")
+      .then((response) => response.json())
+      .then((data) => setArea(data));
   }, []);
 
   const categories = category.map((cate) => (
@@ -52,9 +55,25 @@ export default function DropDown(props: Props) {
     <option key={`unit-${unit.id}`}>{unit.name}</option>
   ));
 
+  const areas = area.map((ar) => (
+    <option key={`area-${ar.id}`}>{ar.name}</option>
+  ));
+
   const { renameTables } = useDropdownRenders();
   return (
     <div>
+      <div className="p-4 ">
+        <select
+          name="area"
+          className="border border-gray-300 rounded-full cursor-pointer text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
+          onChange={handleChange}
+          value={tup.area}
+        >
+          <option>¿Área del requerimiento?</option>
+
+          {areas}
+        </select>
+      </div>
       <div className="p-4 relative inline-flex">
         <ArrowDropdown />
         <select
@@ -63,7 +82,7 @@ export default function DropDown(props: Props) {
           onChange={handleChange}
           value={tup.unidad}
         >
-          <option>Elige una opción</option>
+          <option>¿Cuántas unidades?</option>
           {unities}
         </select>
       </div>
@@ -75,7 +94,7 @@ export default function DropDown(props: Props) {
           onChange={handleChange}
           value={tup.clasificacion}
         >
-          <option>Elige una opción</option>
+          <option>¿Clasificación?</option>
           {categories}
         </select>
       </div>

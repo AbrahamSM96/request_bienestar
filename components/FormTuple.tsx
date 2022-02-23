@@ -12,6 +12,7 @@ export default function FormTuple() {
     clasificacion: "",
     item: "",
     nota: "",
+    area: "",
   });
   const { createTuple, updateTuple, tuples } = useTuples();
 
@@ -61,13 +62,14 @@ export default function FormTuple() {
         clasificacion: tupleFound.clasificacion,
         item: tupleFound.item,
         nota: tupleFound.nota,
+        area: tupleFound.area,
       });
     }
   }, []);
 
   return (
     <Layout>
-      <div className="flex justify-center item-center h-screen">
+      <div className="flex justify-center item-center h-auto">
         <form onSubmit={handleSubmit} className="bg-morenaLigth p-10 h-auto">
           <div className="flex justify-between">
             <div>
@@ -90,7 +92,7 @@ export default function FormTuple() {
             type="number"
             name="cantidad"
             className="bg-pantone468cream text-slate-800 focus:outline-none w-full p-3 px-4 mb-5"
-            placeholder="¿Cuantás unidades?"
+            placeholder="¿Que cantidad necesitas?"
             value={tup.cantidad > 0 ? tup.cantidad : ""}
             onChange={(e) => handleChange(e)}
           />

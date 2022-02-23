@@ -4,7 +4,8 @@ import { getMain } from "../services/index";
 import Tr from "./Tr";
 
 export default function Tbody() {
-  const { tuples } = useTuples();
+  const { tuples = [{}] } = useTuples();
+  const lengthTuples = tuples.length === 0;
   return (
     <tbody>
       {tuples.map((tuple: any, index: Number) => {
