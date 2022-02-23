@@ -72,5 +72,6 @@ model Requerimientos {
   clasificacion String
   item String
   nota String?
+  area String
   created_at  DateTime @default(now())
 }

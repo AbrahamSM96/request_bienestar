@@ -94,6 +94,7 @@ CREATE TABLE "Requerimientos" (
     "clasificacion" TEXT NOT NULL,
     "item" TEXT NOT NULL,
     "nota" TEXT NOT NULL,
+    "area" TEXT NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Requerimientos_pkey" PRIMARY KEY ("id")
