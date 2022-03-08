@@ -1,7 +1,8 @@
+import { NextApiRequest, NextApiResponse } from "next";
 import prisma from "lib/prisma";
 const crypto = require("crypto");
 
-export default async (req, res) => {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   // post
   const {
     cantidad: cantidadString,
