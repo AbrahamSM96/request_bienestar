@@ -5,7 +5,7 @@ import Thead from "./Thead";
 interface PropsUseSearch {
   refButton: HTMLSelectElement;
   setSearch: React.Dispatch<React.SetStateAction<object>>;
-  resultSearcher: string;
+  resultSearcher: [];
 }
 
 export default function Table() {
@@ -17,6 +17,14 @@ export default function Table() {
     event.preventDefault();
     const transSearch = refButton.current.value.toLowerCase().trim();
     setSearch(transSearch);
+  };
+
+  const handlePress = (event: KeyboardEvent): void => {
+    const transSearch = refButton.current.value.toLowerCase().trim();
+    setSearch(transSearch);
+    if (event.key === "13") {
+      setSearch(transSearch);
+    }
   };
 
   return (
@@ -39,6 +47,7 @@ export default function Table() {
               aria-describedby="button-addon2"
               onClick={(event) => handleClick(event)}
               ref={refButton}
+              onKeyPress={(event) => handlePress(event)}
             />
             <button
               className="btn inline-block px-6 py-2.5 bg-pantone465cream text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-pantone468cream hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"
