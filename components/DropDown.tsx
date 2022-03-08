@@ -1,18 +1,19 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, Dispatch, SetStateAction } from "react";
 import { getCategories, getUnities } from "../services/index";
 import ArrowDropdown from "../svg/ArrowDropdown";
 import { useDropdownRenders } from "../hooks/useDropdownRenders";
 
 interface Props {
-  tup: [
-    cantidad: number,
-    unidad: string,
-    clasificacion: string,
-    item: string,
-    nota: string,
-  ];
-  setTup: (pro: object) => object;
-  handleChange: () => object;
+  tup: {
+    area: string;
+    cantidad: number;
+    clasificacion: string;
+    item: string;
+    nota: string;
+    unidad: string;
+  };
+  setTup: React.Dispatch<React.SetStateAction<object>>;
+  handleChange: () => void;
 }
 
 export default function DropDown(props: Props) {
@@ -22,7 +23,7 @@ export default function DropDown(props: Props) {
   const [area, setArea] = useState([]);
   const [errorr, setError] = useState<Error | null>(null);
 
-  const handleChange = (event: { target: HTMLInputElement }) => {
+  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = event.target;
     setTup({ ...tup, [name]: value });
   };
@@ -47,26 +48,34 @@ export default function DropDown(props: Props) {
       .then((data) => setArea(data));
   }, []);
 
-  const categories = category.map((cate) => (
+  interface propsDrop {
+    id: string;
+    name: string;
+  }
+
+  const categories = category.map((cate: propsDrop) => (
     <option key={`categories-${cate.id}`}>{cate.name}</option>
   ));
 
-  const unities = unity.map((unit) => (
+  const unities = unity.map((unit: propsDrop) => (
     <option key={`unit-${unit.id}`}>{unit.name}</option>
   ));
 
-  const areas = area.map((ar) => (
+  const areas = area.map((ar: propsDrop) => (
     <option key={`area-${ar.id}`}>{ar.name}</option>
   ));
 
-  const { renameTables } = useDropdownRenders();
+  type tplotOptions = {
+    [key: string]: any;
+  };
+  const { renameTables }: tplotOptions = useDropdownRenders();
   return (
-    <div>
-      <div className="p-4 ">
+    <>
+      <div className="p-4">
         <select
           name="area"
-          className="border border-gray-300 rounded-full cursor-pointer text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
-          onChange={handleChange}
+          className="w-64 lg:w-auto border border-gray-300 rounded-full cursor-pointer text-gray-500 h-10 pl-5 pr-10 bg-pantone468cream hover:border-gray-400 focus:outline-none appearance-none"
+          onChange={(event) => handleChange(event)}
           value={tup.area}
         >
           <option>¿Área del requerimiento?</option>
@@ -110,6 +119,6 @@ export default function DropDown(props: Props) {
           {renameTables[tup.clasificacion]}
         </select>
       </div>
-    </div>
+    </>
   );
 }
