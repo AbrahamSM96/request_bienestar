@@ -9,7 +9,10 @@ import {
   getCatStationery2,
   getCatMaintenance,
 } from "../services/index";
-
+interface propsDrop {
+  id: string;
+  name: string;
+}
 export const useDropdownRenders = () => {
   const [food, setFood] = useState([]);
   const [stationery1, setStationery1] = useState([]);
@@ -94,35 +97,35 @@ export const useDropdownRenders = () => {
     // });
   }, []);
 
-  const foods = food.map((foo) => (
+  const foods = food.map((foo: propsDrop) => (
     <option key={`foods-${foo.id}`}>{foo.name}</option>
   ));
 
-  const stationery_1 = stationery1.map((stat1) => (
+  const stationery_1 = stationery1.map((stat1: propsDrop) => (
     <option key={`stationery_1-${stat1.id}`}>{stat1.name}</option>
   ));
 
-  const stationery_2 = stationery2.map((stat2) => (
+  const stationery_2 = stationery2.map((stat2: propsDrop) => (
     <option key={`stationery_2-${stat2.id}`}>{stat2.name}</option>
   ));
 
-  const autoparts = autopart.map((autop) => (
+  const autoparts = autopart.map((autop: propsDrop) => (
     <option key={`autoparts-${autop.id}`}>{autop.name}</option>
   ));
 
-  const cleaning = clean.map((cle) => (
+  const cleaning = clean.map((cle: propsDrop) => (
     <option key={`cleaning-${cle.id}`}>{cle.name}</option>
   ));
 
-  const electric = electricc.map((elec) => (
+  const electric = electricc.map((elec: propsDrop) => (
     <option key={`electric-${elec.id}`}>{elec.name}</option>
   ));
 
-  const maintenance = maintenancee.map((main) => (
+  const maintenance = maintenancee.map((main: propsDrop) => (
     <option key={`maintenance-${main.id}`}>{main.name}</option>
   ));
 
-  const pharmacy = pharmacyy.map((phar) => (
+  const pharmacy = pharmacyy.map((phar: propsDrop) => (
     <option key={`pharmacy-${phar.id}`}>{phar.name}</option>
   ));
 

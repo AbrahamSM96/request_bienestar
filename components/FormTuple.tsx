@@ -5,6 +5,16 @@ import { useTuples } from "../context/tuplesContext";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
+interface Tup {
+  id: string;
+  area: string;
+  cantidad: number;
+  clasificacion: string;
+  item: string;
+  nota: string;
+  unidad: string;
+}
+
 export default function FormTuple() {
   const [tup, setTup] = useState({
     cantidad: 0,
@@ -18,12 +28,14 @@ export default function FormTuple() {
 
   const { push, query } = useRouter();
 
-  const handleChange = (event: Event) => {
+  const handleChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = event.target;
     setTup({ ...tup, [name]: value });
   };
 
-  const handleSubmit = (e: Event) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { id: idQuery } = query;
     if (!idQuery) {
@@ -54,7 +66,9 @@ export default function FormTuple() {
 
   useEffect(() => {
     if (query.id) {
-      const tupleFound = tuples.find((tuple) => tuple.id === query.id);
+      const tupleFound = tuples.find(
+        (tuple: Tup): boolean => tuple.id === query.id,
+      );
 
       setTup({
         cantidad: tupleFound.cantidad,

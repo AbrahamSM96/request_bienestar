@@ -11,6 +11,16 @@ export const TuplesContext = createContext();
 
 export const useTuples = () => useContext(TuplesContext);
 
+// interface Tuples {
+//   id: number;
+//   area: string;
+//   cantidad: number;
+//   clasificacion: string;
+//   item: string;
+//   nota: string;
+//   unidad: string;
+// }
+
 export const TuplesProvider = ({ children }) => {
   const [tuples, setTuples] = useState([]);
   const [error, setError] = useState(null);

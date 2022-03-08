@@ -1,17 +1,25 @@
 import { useState, useEffect, useRef } from "react";
 import { useTuples } from "../context/tuplesContext";
-
+interface Tuples {
+  id: number;
+  area: string;
+  cantidad: number;
+  clasificacion: string;
+  item: string;
+  nota: string;
+  unidad: string;
+}
 export const useSearch = () => {
   const { tuples = [{}] } = useTuples();
-  const refButton = useRef(null);
-  const [search, setSearch] = useState("");
+  const refButton = useRef<HTMLSelectElement>(null);
+  const [search, setSearch] = useState<string>("");
   // let reg = new RegExp(search);
   // const newTuplesSearch = tuples.filter((element) => {
   //   console.log(element, 'ELEMENT')
   //   console.log(element.area.toLowerCase().trim().match(reg))
   //   return element.area.match(reg)
   // });
-  const resultSearcher = tuples.filter((item) =>
+  const resultSearcher = tuples.filter((item: Tuples) =>
     item.area
       .toLowerCase()
       .normalize("NFD")

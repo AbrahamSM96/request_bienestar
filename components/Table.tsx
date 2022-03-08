@@ -2,10 +2,18 @@ import { useSearch } from "../hooks/useSearch";
 import Tbody from "./Tbody";
 import Thead from "./Thead";
 
-export default function Table() {
-  const { refButton, search, setSearch, resultSearcher } = useSearch();
+interface PropsUseSearch {
+  refButton: HTMLSelectElement;
+  setSearch: React.Dispatch<React.SetStateAction<object>>;
+  resultSearcher: string;
+}
 
-  const handleClick = (event) => {
+export default function Table() {
+  const { refButton, setSearch, resultSearcher } = useSearch();
+
+  const handleClick = (
+    event: React.MouseEvent<HTMLInputElement | HTMLButtonElement, MouseEvent>,
+  ) => {
     event.preventDefault();
     const transSearch = refButton.current.value.toLowerCase().trim();
     setSearch(transSearch);
@@ -29,7 +37,7 @@ export default function Table() {
               placeholder="Search"
               aria-label="Search"
               aria-describedby="button-addon2"
-              onChange={handleClick}
+              onClick={(event) => handleClick(event)}
               ref={refButton}
             />
             <button
@@ -37,7 +45,7 @@ export default function Table() {
               type="submit"
               id="button-addon2"
               aria-valuetext="hola"
-              onClick={handleClick}
+              onClick={(event) => handleClick(event)}
             >
               <svg
                 aria-hidden="true"
